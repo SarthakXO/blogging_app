@@ -15,8 +15,6 @@ const fetchData = async () => {
     .get("http://localhost:3000/api/blogs")
     .then((res) => res.data);
 
-  console.log(reponse);
-
   return reponse;
 };
 const page = async () => {
