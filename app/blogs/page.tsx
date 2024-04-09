@@ -1,5 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import axios from "axios";
+import Link from "next/link";
 
 interface Blog {
   id: Number;
@@ -27,14 +28,16 @@ const page = async () => {
             key={`${blog.id}`}
             className="object-contain hover:scale-105 duration-300"
           >
-            <BlogCard
-              id={blog.id}
-              title={blog.title}
-              body={blog.body}
-              reactions={blog.reactions}
-              tags={blog.tags}
-              userId={blog.userId}
-            />
+            <Link href={`/blogs/${blog.id}`}>
+              <BlogCard
+                id={blog.id}
+                title={blog.title}
+                body={blog.body}
+                reactions={blog.reactions}
+                tags={blog.tags}
+                userId={blog.userId}
+              />
+            </Link>
           </div>
         );
       })}
