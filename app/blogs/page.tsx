@@ -1,12 +1,28 @@
 import BlogCard from "@/components/BlogCard";
+import axios from "axios";
 
-const page = () => {
+const fetchData = async () => {
+  const data = await axios
+    .get("http://localhost:3000/blogs")
+    .then((res) => res.data);
+
+  return data;
+};
+const page = async () => {
   return (
     <div className="grid grid-cols-4 gap-6 mt-4 p-4">
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
+      <div>
+        <BlogCard />
+      </div>
+      <div>
+        <BlogCard />
+      </div>
+      <div>
+        <BlogCard />
+      </div>
+      <div>
+        <BlogCard />
+      </div>
     </div>
   );
 };
