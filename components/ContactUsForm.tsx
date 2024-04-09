@@ -1,6 +1,9 @@
 "use client";
 import { Formik, Field, ErrorMessage, FormikProps, Form } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
+import axios from "axios";
+
 const ContactUsForm = () => {
   const contactSchema = Yup.object().shape({
     name: Yup.string()
@@ -13,12 +16,20 @@ const ContactUsForm = () => {
       .max(14, "Invalid Number")
       .required("This is required"),
   });
+  const [done, setDone] = useState<boolean>();
   return (
     <div>
       <Formik
         initialValues={{ name: " ", email: " ", phone: " " }}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values) => {
+          try {
+            await axios.post("http://localhost:3000/api/contactUs", values);
+            setDone(true);
+          } catch {
+            setDone(false);
+          }
+          await axios.post("http://localhost:3000/api/contactUs", values);
+          setDone;
         }}
         validationSchema={contactSchema}
       >
@@ -66,6 +77,11 @@ const ContactUsForm = () => {
           <span className="text-gray-500 ">
             We Will reach out to you within 5-10 business days
           </span>
+          {done ? (
+            <span className="text-gray-500">Details Sent</span>
+          ) : (
+            <span className="text-gray-500">invalid Details</span>
+          )}
         </Form>
       </Formik>
     </div>
