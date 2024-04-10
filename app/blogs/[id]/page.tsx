@@ -1,3 +1,4 @@
+import AddComment from "@/components/AddComment";
 import BlogComment from "@/components/BlogComment";
 import SingleBlogCard from "@/components/SingleBlogCard";
 import axios from "axios";
@@ -23,6 +24,7 @@ const page = async ({ params }: { params: { id: String } }) => {
         tags={response.tags}
       />
       <BlogComment id={`${response.id}`} />
+      <AddComment id={`${response.id}`} />
     </div>
   );
 };
