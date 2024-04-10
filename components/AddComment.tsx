@@ -2,7 +2,7 @@
 
 import { Formik, Field, Form } from "formik";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface CommentMade {
   comment: String;
@@ -14,16 +14,22 @@ const postComment = async (values: {}) => {};
 
 const AddComment = ({ id }: { id: String }) => {
   const [posted, setPosted] = useState<boolean>();
+  useEffect(() => {
+    setTimeout(() => {
+      setPosted(false);
+    }, 4000);
+  }, [posted]);
+
   return (
     <div className=" pb-6 w-[800px] m-4">
       {posted ? (
-        <div className="">
+        <div className="absolute duration-300">
           <div
             className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
             role="alert"
           >
-            <span className="font-medium">Success alert!</span> Change a few
-            things up and try submitting again.
+            <span className="font-medium">Success!</span> Comment posted
+            Successfully.
           </div>
         </div>
       ) : (
