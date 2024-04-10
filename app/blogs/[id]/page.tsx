@@ -24,7 +24,7 @@ const page = async ({ params }: { params: { id: String } }) => {
         tags={response.tags}
       />
       <BlogComment id={`${response.id}`} />
-      <AddComment id={`${response.id}`} />
+      <AddComment id={response.id} />
     </div>
   );
 };

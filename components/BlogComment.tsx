@@ -32,7 +32,9 @@ const BlogComment = async ({ id }: { id: String }) => {
             className="flex mt-10 justify-start gap-10 w-1/2 items-center  "
             key={`${comment.id}`}
           >
-            <div>@{comment.user.username}: </div>
+            <div className="text-gray-500 hover:underline duration-300 cursor-pointer">
+              @{comment.user.username}:{" "}
+            </div>
             <div>{comment.body}</div>
           </div>
         );

@@ -1,6 +1,9 @@
 "use client";
 
 import { Formik, Field, Form } from "formik";
+import axios from "axios";
+import { useState } from "react";
+
 interface CommentMade {
   comment: String;
   id: String;
@@ -10,19 +13,39 @@ interface CommentMade {
 const postComment = async (values: {}) => {};
 
 const AddComment = ({ id }: { id: String }) => {
+  const [posted, setPosted] = useState<boolean>();
   return (
     <div className=" pb-6 w-[800px] m-4">
+      {posted ? (
+        <div className="">
+          <div
+            className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert"
+          >
+            <span className="font-medium">Success alert!</span> Change a few
+            things up and try submitting again.
+          </div>
+        </div>
+      ) : (
+        " "
+      )}
       <Formik
-        initialValues={{ comment: "" }}
-        onSubmit={(values): void => {
-          console.log(values);
+        initialValues={{ body: "", postId: id, userId: 25 }}
+        onSubmit={async (values) => {
+          const response = await axios
+            .post("http://localhost:3000/api/comments", values)
+            .then((res) => res.data);
+          if (response.success) {
+            setPosted(true);
+            console.log(response.success);
+          }
         }}
       >
         <Form>
           <div className="flex gap-6 justify-start">
             <Field
               className="w-full text-white bg-black border border-gray-700 rounded-lg p-2 hover:scale-105 duration-300  "
-              name="comment"
+              name="body"
               placeholder="Type Your Comment"
             />
             <button
