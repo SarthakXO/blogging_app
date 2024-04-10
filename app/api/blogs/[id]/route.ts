@@ -6,7 +6,7 @@ export const GET = async (req: NextRequest) => {
   const length = params.length;
   let id = "";
   for (let i = length; i--; i > 0) {
-    console.log("running");
+    // console.log("running");
     if (params[i] == "/") {
       break;
     }
