@@ -25,14 +25,14 @@ const BlogComment = async ({ id }: { id: String }) => {
   }
   return (
     <div className="grid grid-cols-1 place-items-center w-full mb-10 pb-4 pt-4">
-      <div className="text-3xl"> COMMENTS</div>
+      <div className="text-2xl underline"> COMMENTS</div>
       {response.comments.map((comment: Comment) => {
         return (
           <div
             className="flex mt-10 justify-start gap-10 w-1/2 items-center  "
             key={`${comment.id}`}
           >
-            <div>{comment.user.username}: </div>
+            <div>@{comment.user.username}: </div>
             <div>{comment.body}</div>
           </div>
         );
