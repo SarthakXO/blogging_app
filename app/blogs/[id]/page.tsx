@@ -1,3 +1,4 @@
+import SingleBlogCard from "@/components/SingleBlogCard";
 import axios from "axios";
 
 const fetchData = async (id: String) => {
@@ -8,11 +9,18 @@ const fetchData = async (id: String) => {
 };
 
 const page = async ({ params }: { params: { id: String } }) => {
-  const response = await fetchData(params.id);
+  const response = await fetchData(params.id).then((res) => res.data);
   // console.log(response);
   return (
-    <div className="flex justify-center mt-10">
-      <div className="text-5xl underline">Blog No. {response.data.id}</div>
+    <div className="flex justify-center mt-10 text-center w-full">
+      <SingleBlogCard
+        title={response.title}
+        id={response.id}
+        userID={response.userId}
+        body={response.body}
+        reactions={response.reactions}
+        tags={response.tags}
+      />
     </div>
   );
 };
