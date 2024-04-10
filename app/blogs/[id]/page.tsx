@@ -1,5 +1,5 @@
 const page = ({ params }: { params: { id: String } }) => {
-  console.log(params.id);
+  // console.log(params.id);
   return <div>Post: about blog {params.id}</div>;
 };
 
